@@ -9,9 +9,7 @@ filtering by genre, sorting the catalog, and exploring seasons and episodes.
 
 ## Live site
 
-After the first successful GitHub Pages deployment, the app is available at:
-
-<https://kuhle2018.github.io/LINMOY25104_FTO2502_GROUP-A_LINDOKUHLE-MOYAKHE_DJS-PORTFOLIO-PIECE/>
+[Open Podspace](https://is.gd/6B5B0z)
 
 ## Run locally
 
