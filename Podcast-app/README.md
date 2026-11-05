@@ -6,7 +6,7 @@ seasons and episodes.
 
 ## Live app
 
-[Open Podspace](https://is.gd/6B5B0z)
+[Open Podspace](https://tinyurl.com/28gvdggn)
 
 ## Preview
 

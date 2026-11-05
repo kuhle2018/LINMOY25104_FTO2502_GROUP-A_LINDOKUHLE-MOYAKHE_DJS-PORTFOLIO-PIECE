@@ -9,7 +9,7 @@ filtering by genre, sorting the catalog, and exploring seasons and episodes.
 
 ## Live site
 
-[Open Podspace](https://is.gd/6B5B0z)
+[Open Podspace](https://tinyurl.com/28gvdggn)
 
 ## Run locally
 
