@@ -1,5 +1,5 @@
 import React from "react";
-import { genres as genreMap } from "../../data";
+import { genres as genreMap } from "../context/data";
 import styles from "./GenreTags.module.css";
 
 /**

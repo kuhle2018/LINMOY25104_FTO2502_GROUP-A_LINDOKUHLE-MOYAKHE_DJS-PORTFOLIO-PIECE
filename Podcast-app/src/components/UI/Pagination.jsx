@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PodcastContext } from "../../context/PodcastContext";
+import { PodcastContext } from "../context/PodcastState";
 import styles from "./Pagination.module.css";
 
 /**

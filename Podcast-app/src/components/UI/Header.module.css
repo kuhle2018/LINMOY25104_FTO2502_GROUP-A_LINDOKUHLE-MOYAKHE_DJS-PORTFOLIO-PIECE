@@ -1,0 +1,76 @@
+.appHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(29, 48, 39, 0.08);
+  background: rgba(255, 254, 250, 0.88);
+  backdrop-filter: blur(16px);
+}
+
+.headerInner {
+  display: flex;
+  width: min(1180px, calc(100% - 3rem));
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.brandMark {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 12px;
+  background: var(--color-green);
+}
+
+.brandMark span {
+  width: 3px;
+  border-radius: 99px;
+  background: #fffefa;
+}
+
+.brandMark span:nth-child(1),
+.brandMark span:nth-child(3) {
+  height: 10px;
+}
+
+.brandMark span:nth-child(2) {
+  height: 17px;
+}
+
+.brandName {
+  font-size: 1.22rem;
+  font-weight: 780;
+  letter-spacing: -0.055em;
+}
+
+.headerNote {
+  color: var(--color-muted);
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.17em;
+}
+
+@media (max-width: 520px) {
+  .headerInner {
+    width: calc(100% - 2rem);
+    min-height: 66px;
+  }
+
+  .headerNote {
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+  }
+}

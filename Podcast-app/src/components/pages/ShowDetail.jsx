@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { fetchSinglePodcast } from "../api/fetchPata";
-import { Loading, Error, PodcastDetail } from "../components";
+import { fetchSinglePodcast } from "../../api/fetchPata";
+import { Loading, Error, PodcastDetail } from "../index";
+import { PodcastContext } from "../context/PodcastState";
 
 /**
  * ShowDetail page component for displaying detailed information about a single podcast.
@@ -21,7 +22,10 @@ import { Loading, Error, PodcastDetail } from "../components";
 export default function ShowDetail() {
   const { id } = useParams();
   const location = useLocation();
-  const { genres } = location.state || {};
+  const { allPodcasts } = useContext(PodcastContext);
+  const genres =
+    location.state?.genres ||
+    allPodcasts.find((item) => String(item.id) === id)?.genres;
 
   const [podcast, setPodcast] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +33,7 @@ export default function ShowDetail() {
 
   useEffect(() => {
     fetchSinglePodcast(id, setPodcast, setError, setLoading);
-  }, []);
+  }, [id]);
   return (
     <>
       {loading && <Loading message="Loading podcast..." />}

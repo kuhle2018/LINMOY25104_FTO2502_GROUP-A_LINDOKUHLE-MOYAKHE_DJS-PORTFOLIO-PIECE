@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ← add this
+import { useNavigate } from "react-router-dom";
 import styles from "./PodcastDetail.module.css";
-import { formatDate } from "../../utils/formatDate";
+import { formatDate } from "../Utils/FormatDate";
 import GenreTags from "../UI/GenreTags";
+import Artwork from "../UI/Artwork";
 
 export default function PodcastDetail({ podcast, genres }) {
   const [selectedSeasonIndex, setSelectedSeasonIndex] = useState(0);
-  const season = podcast.seasons[selectedSeasonIndex];
-  const navigate = useNavigate(); // ← hook for navigation
+  const seasons = Array.isArray(podcast.seasons) ? podcast.seasons : [];
+  const season = seasons[selectedSeasonIndex];
+  const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
@@ -18,7 +20,11 @@ export default function PodcastDetail({ podcast, genres }) {
 
       {/* Header */}
       <div className={styles.header}>
-        <img src={podcast.image} alt="Podcast Cover" className={styles.cover} />
+        <Artwork
+          src={podcast.image}
+          title={podcast.title}
+          className={styles.cover}
+        />
         <div>
           <h1 className={styles.title}>{podcast.title}</h1>
           <p className={styles.description}>{podcast.description}</p>
@@ -27,7 +33,7 @@ export default function PodcastDetail({ podcast, genres }) {
             <div className={styles.seasonInfo}>
               <div>
                 <p>Genres</p>
-                <GenreTags genres={genres} />
+                <GenreTags genres={genres || podcast.genres || []} />
               </div>
 
               <div>
@@ -37,13 +43,13 @@ export default function PodcastDetail({ podcast, genres }) {
 
               <div>
                 <p>Total Seasons:</p>
-                <strong>{podcast.seasons.length} Seasons</strong>
+                <strong>{seasons.length} Seasons</strong>
               </div>
 
               <div>
                 <p>Total Episodes:</p>
                 <strong>
-                  {podcast.seasons.reduce(
+                  {seasons.reduce(
                     (acc, s) => acc + s.episodes.length,
                     0
                   )}{" "}
@@ -57,45 +63,60 @@ export default function PodcastDetail({ podcast, genres }) {
 
       {/* Season Details */}
       <div className={styles.seasonDetails}>
-        <div className={styles.seasonIntro}>
-          <div className={styles.left}>
-            <img className={styles.seasonCover} src={season.image} />
-            <div>
-              <h3>
-                Season {selectedSeasonIndex + 1}: {season.title}
-              </h3>
-              <p>{season.description}</p>
-              <p className={styles.releaseInfo}>
-                {season.episodes.length} Episodes
-              </p>
-            </div>
-          </div>
-          <select
-            value={selectedSeasonIndex}
-            onChange={(e) => setSelectedSeasonIndex(Number(e.target.value))}
-            className={styles.dropdown}
-          >
-            {podcast.seasons.map((s, i) => (
-              <option key={i} value={i}>
-                Season {i + 1}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className={styles.episodeList}>
-          {season.episodes.map((ep, index) => (
-            <div key={index} className={styles.episodeCard}>
-              <img className={styles.episodeCover} src={season.image} alt="" />
-              <div className={styles.episodeInfo}>
-                <p className={styles.episodeTitle}>
-                  Episode {index + 1}: {ep.title}
-                </p>
-                <p className={styles.episodeDesc}>{ep.description}</p>
+        {season ? (
+          <>
+            <div className={styles.seasonIntro}>
+              <div className={styles.left}>
+                <Artwork
+                  className={styles.seasonCover}
+                  src={season.image || podcast.image}
+                  title={season.title || podcast.title}
+                />
+                <div>
+                  <h3>
+                    Season {selectedSeasonIndex + 1}: {season.title}
+                  </h3>
+                  <p>{season.description}</p>
+                  <p className={styles.releaseInfo}>
+                    {season.episodes.length} Episodes
+                  </p>
+                </div>
               </div>
+              <select
+                value={selectedSeasonIndex}
+                onChange={(e) => setSelectedSeasonIndex(Number(e.target.value))}
+                className={styles.dropdown}
+                aria-label="Select season"
+              >
+                {seasons.map((s, i) => (
+                  <option key={i} value={i}>
+                    Season {i + 1}
+                  </option>
+                ))}
+              </select>
             </div>
-          ))}
-        </div>
+
+            <div className={styles.episodeList}>
+              {season.episodes.map((ep, index) => (
+                <div key={index} className={styles.episodeCard}>
+                  <Artwork
+                    className={styles.episodeCover}
+                    src={ep.image || season.image || podcast.image}
+                    title={ep.title || season.title || podcast.title}
+                  />
+                  <div className={styles.episodeInfo}>
+                    <p className={styles.episodeTitle}>
+                      Episode {index + 1}: {ep.title}
+                    </p>
+                    <p className={styles.episodeDesc}>{ep.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <p className={styles.emptySeasons}>No season details are available.</p>
+        )}
       </div>
     </div>
   );

@@ -2,18 +2,31 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 1rem 0;
+  gap: 0.45rem;
+  padding: 2rem 0 0.5rem;
 }
+
 .pageButton {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
   padding: 0.5rem 0.75rem;
+  border: 1px solid #e1e4dc;
   border-radius: 999px;
-  background-color: #eee;
-  font-size: 1rem;
-  border: none;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 0.85rem;
+  font-weight: 650;
   cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
 }
+
+.pageButton:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
 .active {
-  background-color: #2563eb;
-  color: white;
+  border-color: var(--color-green);
+  background: var(--color-green);
+  color: #fffefa;
 }
