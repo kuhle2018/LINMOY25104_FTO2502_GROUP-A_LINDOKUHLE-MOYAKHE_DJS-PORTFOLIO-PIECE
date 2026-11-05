@@ -21,5 +21,5 @@ npm run build
 npm run preview
 ```
 
-GitHub Actions publishes the production build to GitHub Pages whenever changes
-are pushed to the repository's `main` branch.
+The live GitHub Pages site is published from the `gh-pages` branch. GitHub
+Actions runners are unavailable while the account has a billing issue.

@@ -29,4 +29,6 @@ npm run lint
 npm run build
 ```
 
-Pushing to `main` automatically builds and deploys the site to GitHub Pages.
+GitHub Pages serves the production build from the `gh-pages` branch. GitHub
+Actions could not be used because the account's billing status prevents hosted
+workflow runners from starting.
