@@ -4,6 +4,10 @@ Podspace is a responsive podcast discovery app built with React and Vite. Browse
 podcasts, search by title, filter by genre, sort the catalog, and explore show
 seasons and episodes.
 
+## Preview
+
+![Podspace podcast discovery page](screenshots/podspace-home.png)
+
 ## Development
 
 ```bash

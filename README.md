@@ -3,6 +3,10 @@
 A responsive podcast discovery app for browsing shows, searching by title,
 filtering by genre, sorting the catalog, and exploring seasons and episodes.
 
+## Preview
+
+![Podspace podcast discovery page](Podcast-app/screenshots/podspace-home.png)
+
 ## Live site
 
 After the first successful GitHub Pages deployment, the app is available at:
